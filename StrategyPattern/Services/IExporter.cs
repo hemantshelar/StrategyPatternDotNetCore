@@ -44,12 +44,15 @@ public interface IExportServiceProvider
 
 public class ExportServiceProvider : IExportServiceProvider
 {
-	public Dictionary<string, IFileExporter> Exporters { get; set; } = new Dictionary<string, IFileExporter>
+	public ExportServiceProvider(IEnumerable<IFileExporter> fileExporters)
 	{
-		{"csv", new CsvExporter()},
-		{"xml", new XmlExporter()},
-		{"json", new JsonExporter()}
-	};
+		foreach (var exporter in fileExporters)
+		{
+			Exporters.Add(exporter.GetFileType, exporter);
+		}
+
+	}
+	public Dictionary<string, IFileExporter> Exporters { get; set; } = new();
 
 	public string exportData(string fileType, string data)
 	{

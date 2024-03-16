@@ -1,7 +1,5 @@
 
-using StrategyPattern.Services;
-
-namespace StrategyPattern
+namespace AzureAdProtectedAPI
 {
 	public class Program
 	{
@@ -15,11 +13,6 @@ namespace StrategyPattern
 			// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 			builder.Services.AddEndpointsApiExplorer();
 			builder.Services.AddSwaggerGen();
-
-			builder.Services.AddScoped<IFileExporter, CsvExporter>();
-			builder.Services.AddScoped<IFileExporter, XmlExporter>();
-			builder.Services.AddScoped<IFileExporter, JsonExporter>();
-			builder.Services.AddScoped<IExportServiceProvider, ExportServiceProvider>();
 
 			var app = builder.Build();
 
